@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment - VT Creations</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="payment-container">
+    <h1>Complete Your Payment</h1>
+    <div class="item-details">
+      <h2 id="item-name">Item Name</h2>
+      <p>Price: ₹<span id="item-price">0</span></p>
+      <p>Pay via PhonePe to: <strong>9110337046</strong></p>
+    </div>
+    <a id="pay-btn" class="phonepe-btn" href="https://www.phonepe.com/" target="_blank" rel="noopener">Pay with PhonePe</a>
+  </div>
+
+  <script>
+    const item = JSON.parse(localStorage.getItem("buyNowItem"));
+    if(item){
+      document.getElementById("item-name").textContent = item.name;
+      document.getElementById("item-price").textContent = item.price;
+
+      const upiLink = `upi://pay?pa=9110337046@upi&pn=VT%20Creations&tn=${encodeURIComponent(item.name)}&am=${item.price}&cu=INR`;
+      document.getElementById("pay-btn").href = upiLink;
+    } else {
+      document.getElementById("item-name").textContent = "No item selected";
+      document.getElementById("item-price").textContent = "0";
+      document.getElementById("pay-btn").style.display = "none";
+    }
+  </script>
+</body>
+</html>

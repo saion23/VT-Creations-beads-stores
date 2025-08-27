@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmation - VT Creations</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif; text-align: center;
+      background-color: #f9f9f9; color: #333; margin: 0; padding: 0;
+    }
+    .order-container {
+      max-width: 400px; margin: 100px auto; padding: 20px;
+      background: #fff; border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    h1 { color: #ff5733; margin-bottom: 20px; }
+    p { font-size: 16px; margin-bottom: 10px; }
+    .note { margin-top: 15px; color: #555; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <div class="order-container">
+    <h1>Order Confirmed!</h1>
+    <p>Item: <span id="item-name"></span></p>
+    <p>Price: ₹<span id="item-price"></span></p>
+    <p>Estimated delivery: <span id="delivery-days"></span> days</p>
+    <p class="note">Thank you for shopping with VT Creations 🎨</p>
+  </div>
+
+  <script>
+    const order = JSON.parse(localStorage.getItem("orderInfo"));
+    if(order){
+      document.getElementById("item-name").textContent = order.name;
+      document.getElementById("item-price").textContent = order.price;
+      document.getElementById("delivery-days").textContent = order.deliveryDays;
+    } else {
+      document.getElementById("item-name").textContent = "No order found";
+      document.getElementById("item-price").textContent = "0";
+      document.getElementById("delivery-days").textContent = "0";
+    }
+  </script>
+</body>
+</html>
